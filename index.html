@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0a0a0a" />
+    <title>NYC Birthday 2026</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="app.css" />
+  </head>
+  <body>
+    <div class="grain"></div>
+    <main class="app-shell">
+      <section class="tab-panel active" id="tab-home" data-tab="home">
+        <header class="hero">
+          <h1>🪩 NYC BIRTHDAY</h1>
+          <p>Feb 20–23 • 2026</p>
+        </header>
+
+        <section class="card quick-actions">
+          <h2>Quick Actions</h2>
+          <div class="actions-grid">
+            <button class="btn" data-action="ride">Ride</button>
+            <button class="btn" data-action="copy" data-copy="Hilton Brooklyn, Downtown Brooklyn">Hotel</button>
+            <a class="btn" href="tel:<EMERGENCY_PHONE>">Emergency</a>
+            <button class="btn" data-action="go-tab" data-target-tab="budget">Budget</button>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Intentions</h2>
+          <blockquote>"Show up authentically"</blockquote>
+          <ul>
+            <li>Dance like no one's watching-because they're all watching themselves in the mirror</li>
+            <li>Make space for spontaneity</li>
+            <li>Connect with your community</li>
+            <li>Celebrate your growth and your journey</li>
+          </ul>
+        </section>
+
+        <section class="card">
+          <h2>Conversation Prompts</h2>
+          <ul>
+            <li>What has energized you most lately?</li>
+            <li>What are you currently learning about yourself?</li>
+            <li>What kind of community do you want to build this year?</li>
+            <li>What has been your favorite NYC memory so far?</li>
+          </ul>
+        </section>
+
+        <section class="card">
+          <h2>Weather Preview</h2>
+          <p>Thu: 39°F, Partly Cloudy</p>
+          <p>Fri: 43°F, Mostly Cloudy</p>
+          <p>Sat: 41°F, Rain (60%)</p>
+          <p>Sun: 45°F, Partly Cloudy</p>
+          <p class="note">Rain likely Saturday - bring umbrella!</p>
+        </section>
+
+        <section class="card">
+          <h2>Flights</h2>
+          <article class="flight">
+            <h3>Arrival (Thursday)</h3>
+            <p>AA1583 DEN → EWR</p>
+            <p>Departs 4:55 PM • Arrives 10:30 PM • Seat 18F</p>
+            <label>Confirmation
+              <input type="text" data-model="flights.arrivalConfirmation" placeholder="Enter confirmation" />
+            </label>
+          </article>
+          <article class="flight">
+            <h3>Departure (Monday)</h3>
+            <p>AA1418 EWR → DEN</p>
+            <p>Departs 10:00 AM • Arrives 12:35 PM</p>
+            <label>Confirmation
+              <input type="text" data-model="flights.departureConfirmation" placeholder="Enter confirmation" />
+            </label>
+          </article>
+        </section>
+
+        <section class="card">
+          <h2>Timeline</h2>
+          <div class="timeline-links">
+            <button class="chip" data-jump-tab="friday" data-jump-id="fri-film">Fri 5:00 PM Film Forum</button>
+            <button class="chip" data-jump-tab="friday" data-jump-id="fri-nocturnal">Fri 11:00 PM Nocturnal</button>
+            <button class="chip" data-jump-tab="saturday" data-jump-id="sat-vogue">Sat 12:00 PM Vogue</button>
+            <button class="chip" data-jump-tab="saturday" data-jump-id="sat-basement">Sat 11:15 PM BASEMENT</button>
+            <button class="chip" data-jump-tab="sunday" data-jump-id="sun-ballet">Sun 3:00 PM NYC Ballet</button>
+            <button class="chip" data-jump-tab="sunday" data-jump-id="sun-cock">Sun 11:30 PM The Cock</button>
+          </div>
+        </section>
+
+        <section class="card collapsible">
+          <button class="collapse-toggle" aria-expanded="false">Travel Info</button>
+          <div class="collapse-content">
+            <p>Hotel: Hilton Brooklyn (Downtown Brooklyn)</p>
+            <p>Primary travel: MTA + occasional Uber/Lyft for late-night transitions.</p>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Settings</h2>
+          <button class="btn danger" id="resetDataBtn">Reset local data</button>
+        </section>
+      </section>
+
+      <section class="tab-panel" id="tab-budget" data-tab="budget">
+        <header class="section-header"><h1>Budget</h1></header>
+        <section class="card">
+          <h2>Total</h2>
+          <p class="total" id="budgetTotal">$0.00</p>
+          <p class="note">Recommended total with buffer: $2,300–2,500</p>
+        </section>
+        <section class="card">
+          <h2>Expenses</h2>
+          <div id="budgetRows" class="stack"></div>
+          <button class="btn" id="addExpenseBtn">Add Expense</button>
+        </section>
+      </section>
+
+      <section class="tab-panel" id="tab-friday" data-tab="friday">
+        <header class="section-header"><h1>Friday</h1><p>Start your day: Take morning medicine with breakfast.</p></header>
+
+        <article class="card event" id="fri-film">
+          <div class="time-badge">5:00 PM</div>
+          <h2>Film Forum</h2>
+          <p class="meta">209 W Houston St, West Village</p>
+          <p>Independent cinema; arrive 15 min early; first come first served.</p>
+          <p class="reminder">Travel: Hilton Brooklyn → Film Forum: 2/3 train to Houston St (~25–30 min). Leave hotel 4:20 PM.</p>
+          <div class="event-actions">
+            <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=209%20W%20Houston%20St%2C%20New%20York%2C%20NY">Open in Maps</a>
+            <button class="btn" data-action="copy" data-copy="209 W Houston St, West Village">Copy Address</button>
+          </div>
+        </article>
+
+        <article class="card event" id="fri-holywater">
+          <div class="time-badge">7:15 PM</div>
+          <h2 contenteditable="true" data-editable="events.fri.holywater.title">Holywater Dinner</h2>
+          <p class="meta">112 Reade St, TriBeCa</p>
+          <p contenteditable="true" data-editable="events.fri.holywater.details">Birthday dinner with friends; reservation code placeholder &lt;HOLYWATER_RES_CODE&gt;; Party of 3; Lounge; dress polished casual.</p>
+          <p class="reminder">Travel: Film Forum → Holywater: walk (~15 min) or 1 train Houston → Franklin (~8 min). Leave 7:00 PM.</p>
+          <div class="event-actions">
+            <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=112%20Reade%20St%2C%20New%20York%2C%20NY">Open in Maps</a>
+            <button class="btn" data-action="copy" data-copy="112 Reade St, TriBeCa">Copy Address</button>
+            <button class="btn" data-action="copy" data-copy="<HOLYWATER_RES_CODE>">Copy Code</button>
+          </div>
+        </article>
+
+        <article class="card event" id="fri-barcrawl">
+          <div class="time-badge">8:45 PM – 11:00 PM</div>
+          <h2 contenteditable="true" data-editable="events.fri.barcrawl.title">Bar Crawl</h2>
+          <p class="meta">Hell's Kitchen → East Village</p>
+          <p contenteditable="true" data-editable="events.fri.barcrawl.details">Suggested stops: Industry Bar (355 W 52nd St) OR Therapy (348 W 52nd St) start 8:45; Boxers HK (37th & 8th); Flaming Saddles (9th Ave); The Ritz (369 W 46th St) final ~10:30.</p>
+          <p class="reminder">Travel: Holywater → Industry Bar: 1 train Franklin → 50th (~12 min). Leave 8:30 PM.</p>
+          <div class="event-actions">
+            <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Industry%20Bar%20355%20W%2052nd%20St%20New%20York">Open in Maps</a>
+            <button class="btn" data-action="copy" data-copy="Industry Bar 355 W 52nd St New York">Copy Start</button>
+          </div>
+        </article>
+
+        <article class="card event" id="fri-nocturnal">
+          <div class="time-badge">11:00 PM – 7:00 AM</div>
+          <h2>Nocturnal</h2>
+          <p class="meta">1084 Flushing Ave, East Williamsburg</p>
+          <p>Cover $25 before 3 AM; open til 7; cash preferred.</p>
+          <p class="reminder">Travel: The Ritz → Nocturnal: L train 8th Ave → Jefferson (~15 min) + walk OR Uber (~20 min $25–35).</p>
+          <div class="event-actions">
+            <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=1084%20Flushing%20Ave%20Brooklyn%20NY">Open in Maps</a>
+            <button class="btn" data-action="copy" data-copy="1084 Flushing Ave Brooklyn NY">Copy Address</button>
+          </div>
+          <p class="note">End of night: Back to Hotel + evening medicine reminder.</p>
+        </article>
+      </section>
+
+      <section class="tab-panel" id="tab-saturday" data-tab="saturday">
+        <header class="section-header"><h1>Saturday</h1><p>Reminder: morning medicine; leave hotel 11:10 AM.</p></header>
+
+        <article class="card event" id="sat-vogue">
+          <div class="time-badge">12:00 PM – 1:30 PM</div>
+          <h2>New Way Vogue Class (Broadway Dance Center)</h2>
+          <p class="meta">Broadway Dance Center, 322 W 45th St</p>
+          <p>Drop-in $25; arrive 15 min early; Studio 4.</p>
+          <p class="reminder">Travel: Hilton Brooklyn → BDC: 2/3 to Times Sq-42, walk to 9th Ave (~35–40 min). Leave 11:10 AM.</p>
+          <div class="event-actions"><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=322%20W%2045th%20St%20New%20York%20NY">Open in Maps</a></div>
+        </article>
+
+        <article class="card event" id="sat-moma">
+          <div class="time-badge">1:30 PM – 3:00 PM</div>
+          <h2>MoMA – Desire Exhibit</h2>
+          <p class="meta">11 W 53rd St, Midtown</p>
+          <p>Ticket placeholder: &lt;MOMA_TICKET_NUMBER&gt; ; Sat Feb 21, 2026</p>
+          <p class="reminder">Travel: BDC → MoMA walk ~12 min.</p>
+          <div class="event-actions">
+            <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=11%20W%2053rd%20St%20New%20York%20NY">Open in Maps</a>
+            <button class="btn" data-action="copy" data-copy="<MOMA_TICKET_NUMBER>">Copy Ticket</button>
+          </div>
+        </article>
+
+        <article class="card event">
+          <div class="time-badge">3:00 PM – 3:30 PM</div>
+          <h2>Quick Lunch (near Midtown)</h2>
+          <p>Options: Magnolia Bakery (Rockefeller Center), Joe's Shanghai, maman.</p>
+          <p class="note">Reminder: "Text Elizabeth when you're at Magnolia Bakery!"</p>
+        </article>
+
+        <article class="card event">
+          <div class="time-badge">3:30 PM – 5:00 PM</div>
+          <h2>Vogue Basics + Absolute Beginner (Ailey Extension)</h2>
+          <p class="meta">Ailey Extension, 405 W 55th St</p>
+          <p>Drop-in $25.</p>
+          <p class="reminder">Travel: leave lunch by 3:15 PM.</p>
+          <div class="event-actions"><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=405%20W%2055th%20St%20New%20York%20NY">Open in Maps</a></div>
+        </article>
+
+        <article class="card event">
+          <div class="time-badge">7:00 PM entry</div>
+          <h2>World Dweller (Pioneer Works)</h2>
+          <p class="meta">Pioneer Works, 159 Pioneer St, Red Hook</p>
+          <p>Ticket placeholder: &lt;DWELLER_ORDER&gt; ; price $47.35</p>
+          <p class="reminder">Travel: recommend Uber/Lyft 40–50 min $35–45; leave Ailey by 6:00 PM.</p>
+          <div class="event-actions">
+            <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=159%20Pioneer%20St%20Brooklyn%20NY">Open in Maps</a>
+            <button class="btn" data-action="copy" data-copy="<DWELLER_ORDER>">Copy Ticket</button>
+          </div>
+        </article>
+
+        <article class="card event">
+          <div class="time-badge">9:45 PM</div>
+          <h2>Hotel Pit Stop</h2>
+          <p>Party medicine, change, leave 10:40 PM.</p>
+        </article>
+
+        <article class="card event" id="sat-basement">
+          <div class="time-badge">11:15 PM – 7:00 AM</div>
+          <h2 contenteditable="true" data-editable="events.sat.basement.title">BASEMENT Afterparty</h2>
+          <p class="meta">BASEMENT, 52-19 Flushing Ave, Maspeth</p>
+          <p contenteditable="true" data-editable="events.sat.basement.details">Ticket placeholder: &lt;BASEMENT_ORDER&gt;. Travel: Uber/Lyft 25–30 min $25–35; leave 10:40 PM.</p>
+          <div class="event-actions">
+            <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=52-19%20Flushing%20Ave%20Maspeth%20NY">Open in Maps</a>
+            <button class="btn" data-action="copy" data-copy="<BASEMENT_ORDER>">Copy Ticket</button>
+          </div>
+          <p class="note">End of night: Back to Hotel + evening medicine reminder.</p>
+        </article>
+      </section>
+
+      <section class="tab-panel" id="tab-sunday" data-tab="sunday">
+        <header class="section-header"><h1>Sunday</h1><p>Reminder: morning medicine; leave hotel 10:30 AM.</p></header>
+
+        <article class="card event">
+          <div class="time-badge">11:00 AM – 1:00 PM</div>
+          <h2>Recovery Brunch</h2>
+          <p class="meta">Williamsburg / Lower East Side</p>
+          <p>Options: Ramen By Ra, Bánh by Lauren, Cuts & Slices, Katz's Delicatessen.</p>
+          <p class="reminder">Travel: Hotel → brunch: L train Bedford (Williamsburg) or 1st Ave (LES) 15–25 min.</p>
+          <div class="event-actions"><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Bedford%20Ave%20Brooklyn%20NY">Open in Maps</a></div>
+        </article>
+
+        <article class="card event" id="sun-ballet">
+          <div class="time-badge">3:00 PM</div>
+          <h2>NYC Ballet – Sleeping Beauty</h2>
+          <p class="meta">David H. Koch Theater, Lincoln Center</p>
+          <p class="reminder">Travel: L to Union Sq, transfer to 1 uptown to 66th (~35–40 min); leave brunch by 2:00 PM.</p>
+          <div class="event-actions"><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=David%20H.%20Koch%20Theater%2020%20Lincoln%20Center%20Plaza%20New%20York%20NY">Open in Maps</a></div>
+        </article>
+
+        <article class="card event">
+          <div class="time-badge">7:00 PM</div>
+          <h2>Max Brenner – Union Square</h2>
+          <p class="meta">841 Broadway, Union Square</p>
+          <p>Confirmation placeholder: &lt;MAX_BRENNER_CONFIRMATION&gt;</p>
+          <p class="reminder">Travel: 1 train 66th → 14th Union Sq (~12 min).</p>
+          <div class="event-actions">
+            <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=841%20Broadway%20New%20York%20NY">Open in Maps</a>
+            <button class="btn" data-action="copy" data-copy="<MAX_BRENNER_CONFIRMATION>">Copy Confirmation</button>
+          </div>
+        </article>
+
+        <article class="card event" id="sun-cock">
+          <div class="time-badge">11:30 PM – 4:00 AM</div>
+          <h2>The Cock – Sloppy Sunday</h2>
+          <p class="meta">93 2nd Ave, East Village</p>
+          <p>Cash only; suggest leaving 2–3 AM.</p>
+          <p class="reminder">Travel: walk ~15 min from Union Sq area or L one stop to 1st Ave.</p>
+          <div class="event-actions"><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=93%202nd%20Ave%20New%20York%20NY">Open in Maps</a></div>
+          <p class="note">End of night: Back to Hotel + evening medicine reminder + final packing reminders.</p>
+        </article>
+      </section>
+
+      <section class="tab-panel" id="tab-pack" data-tab="pack">
+        <header class="section-header"><h1>Pack</h1></header>
+        <section class="card">
+          <h2>Packing Progress</h2>
+          <div class="progress-wrap">
+            <div id="packProgressBar"></div>
+          </div>
+          <p id="packProgressText">0 / 0 packed</p>
+        </section>
+        <section id="packList" class="stack"></section>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Primary">
+      <button class="tab-btn active" data-tab-target="home">Home</button>
+      <button class="tab-btn" data-tab-target="budget">Budget</button>
+      <button class="tab-btn" data-tab-target="friday">Friday</button>
+      <button class="tab-btn" data-tab-target="saturday">Saturday</button>
+      <button class="tab-btn" data-tab-target="sunday">Sunday</button>
+      <button class="tab-btn" data-tab-target="pack">Pack</button>
+    </nav>
+
+    <div id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
